@@ -4054,7 +4054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6908109534960209808, guid: 2ca137f345827994cb2026cd7f670074, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 331
+      value: -680
       objectReference: {fileID: 0}
     - target: {fileID: 6908109534960209808, guid: 2ca137f345827994cb2026cd7f670074, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4533,7 +4533,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -2669, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &809623415
@@ -9553,6 +9553,7 @@ MonoBehaviour:
   groundEnemyParent: {fileID: 767670529}
   healthBarPrefab: {fileID: 4210619442848170271, guid: 2ca137f345827994cb2026cd7f670074, type: 3}
   healthBarParent: {fileID: 781420371}
+  finishedSpawning: 0
 --- !u!1001 &2110765338
 PrefabInstance:
   m_ObjectHideFlags: 0

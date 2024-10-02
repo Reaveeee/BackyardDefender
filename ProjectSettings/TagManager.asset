@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - GroundEnemy
+  - GroundProjectile
+  - GroundMelee
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 1998002845
+    locked: 0
+  - name: Ground
+    uniqueID: 2303405963
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: SpriteUI
+    uniqueID: 1439014505
+    locked: 0
+  - name: Foreground
+    uniqueID: 2280418313
+    locked: 0
