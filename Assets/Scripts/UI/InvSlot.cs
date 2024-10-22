@@ -45,6 +45,7 @@ public class InvSlot : MonoBehaviour
         for(int i = 0; i < shopItems.Length; i++)
         {
             shopItems[i].OnBuyItem += UpdateItemNumbers;
+            shopItems[i].OnCollectWater += UpdateItemNumbers;
         }
         Invoke("UpdateItemNumbers", .3f);
     }
@@ -65,6 +66,17 @@ public class InvSlot : MonoBehaviour
                 {
                     LeanTween.color(bagSprites[i].rectTransform, Color.white, .2f).setEaseOutCubic();
                 }
+            }
+        }
+        if(slot == 1)
+        {
+            if (playerManager.water == 0)
+            {
+                LeanTween.color(GetComponentInChildren<Image>().rectTransform, new Color(.7f, .7f, .7f, .7f), .2f).setEaseOutCubic();
+            }
+            else
+            {
+                LeanTween.color(GetComponentInChildren<Image>().rectTransform, Color.white, .2f).setEaseOutCubic();
             }
         }
     }

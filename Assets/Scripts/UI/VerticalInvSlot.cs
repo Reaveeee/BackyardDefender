@@ -13,7 +13,6 @@ public class VerticalInvSlot : MonoBehaviour
         playerActions = GameObject.Find("Player").GetComponent<PlayerActions>();
         playerActions.OnInvSwitch += HandleInvSwitch;
         rectTransform = GetComponent<RectTransform>();
-
     }
 
     void HandleInvSwitch()

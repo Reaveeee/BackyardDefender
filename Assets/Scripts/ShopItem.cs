@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ShopItem : MonoBehaviour
 {
     public Sprite[] itemSprites;
+    [SerializeField] bool isWaterWell;
     SpriteRenderer[] spriteRenderer;
     PlayerManager playerManager;
     GameManager gameManager;
@@ -15,10 +17,13 @@ public class ShopItem : MonoBehaviour
     public int amount;
     public int price;
     bool selected = false;
-
     bool used = false;
+    [SerializeField] int water;
+    Vector3 sizeNormal;
+    Vector3 sizeSelected;
 
     public event Action OnBuyItem;
+    public event Action OnCollectWater;
 
     void Start()
     {
@@ -26,6 +31,8 @@ public class ShopItem : MonoBehaviour
         playerManager = GameObject.Find("Player").GetComponent<PlayerManager>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.OnGameStateUpdate += HandleGamestateupdate;
+        sizeNormal = spriteRenderer[0].transform.localScale;
+        sizeSelected = spriteRenderer[0].transform.localScale + new Vector3(.1f, .1f, 0);
 
         HandleGamestateupdate();
     }
@@ -57,13 +64,20 @@ public class ShopItem : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         selected = true;
-        LeanTween.scale(spriteRenderer[0].gameObject, new Vector3(1.1f, 1.1f, 1), .1f); 
+        LeanTween.scale(spriteRenderer[0].gameObject, sizeSelected, .1f);
+        if (!used && isWaterWell)
+        {
+            playerManager.water += water;
+            GameObject.Find("WaterCounterText").GetComponent<TextMeshProUGUI>().text = playerManager.water.ToString();
+            used = true;
+            OnCollectWater.Invoke();
+        }   
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         selected = false;
-        LeanTween.scale(spriteRenderer[0].gameObject, new Vector3(1f, 1f, 1), .1f);
+        LeanTween.scale(spriteRenderer[0].gameObject, sizeNormal, .1f);
     }
 
     void HandleGamestateupdate()
@@ -73,10 +87,13 @@ public class ShopItem : MonoBehaviour
             used = false;
             spriteRenderer[0].enabled = true;
             spriteRenderer[1].enabled = true;
-            item = UnityEngine.Random.Range(0, maxItems);
-            amount = UnityEngine.Random.Range(1, 10);
-            price = amount * 5;
-            spriteRenderer[0].sprite = itemSprites[item];
+            if(!isWaterWell)
+            {
+                item = UnityEngine.Random.Range(0, maxItems);
+                amount = UnityEngine.Random.Range(1, 10);
+                price = amount * 5;
+                spriteRenderer[0].sprite = itemSprites[item];
+            }
         }
     }
 }

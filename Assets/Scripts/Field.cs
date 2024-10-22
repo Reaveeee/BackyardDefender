@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Field : MonoBehaviour
@@ -49,10 +50,16 @@ public class Field : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if(playerActions.invSlot== 1)
+                if(playerActions.invSlot == 1 && playerManager.water >= 1)
                 {
+                    if(humidity < maxHumidity)
+                    {
+                        playerManager.water -= 1;
+                    }
                     humidity = maxHumidity;
-                }else if(playerActions.invSlot== 2)
+                    GameObject.Find("WaterCounterText").GetComponent<TextMeshProUGUI>().text = playerManager.water.ToString();
+                }
+                else if(playerActions.invSlot== 2)
                 {
                     if (!planted)
                     {

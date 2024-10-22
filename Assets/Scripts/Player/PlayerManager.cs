@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public int[] seeds = new int[2];
+    public int water = 0;
     public int health = 10;
     public int maxHealth = 10;
     public int shield = 0;
