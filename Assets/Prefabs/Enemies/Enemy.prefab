@@ -312,6 +312,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  minSearchTime: 1
+  maxSearchTime: 4
 --- !u!1001 &6972418146686038788
 PrefabInstance:
   m_ObjectHideFlags: 0
