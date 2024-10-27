@@ -11,8 +11,17 @@ public class PlayerMovement : MonoBehaviour
     float stunTimer;
     GameManager gameManager;
     AnimationManager animationManager;
-    [SerializeField] Sprite[] spriteSetIdle;
+
+    [SerializeField] Sprite[] spriteSetIdleDown;
     [SerializeField] Sprite[] spriteSetWalkDown;
+
+    [SerializeField] Sprite[] spriteSetIdleRight;
+    [SerializeField] Sprite[] spriteSetWalkRight;
+
+    [SerializeField] Sprite[] spriteSetIdleLeft;
+    [SerializeField] Sprite[] spriteSetWalkLeft;
+
+    int previousDir; //0 = Down, 1 = Right, 2 = Left, 3 = Up 4 = none
 
     void Start()
     {
@@ -33,16 +42,39 @@ public class PlayerMovement : MonoBehaviour
 
         stunTimer -= Time.deltaTime;
         inputVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if(Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") < 0)
+        if(Input.GetAxisRaw("Vertical") < 0)
         {
-            animationManager.sprites = spriteSetWalkDown;
-            animationManager.speed = 4;
+            if(previousDir != 0)
+            {
+                animationManager.setAnimation(spriteSetWalkDown, 4);
+                previousDir = 0;
+            }   
+        }
+        else if(Input.GetAxisRaw("Horizontal") > 0)
+        {
+            if (previousDir != 1)
+            {
+                animationManager.setAnimation(spriteSetWalkRight, 4);
+                previousDir = 1;
+            }
+        }
+        else if(Input.GetAxisRaw("Horizontal") < 0)
+        {
+            if (previousDir != 2)
+            {
+                animationManager.setAnimation(spriteSetWalkLeft, 4);
+                previousDir = 2;
+            }
         }
         else
         {
-            animationManager.sprites = spriteSetIdle;
-            animationManager.speed = 3;
+            if(previousDir != 4)
+            {
+                animationManager.setAnimation(spriteSetIdleDown, 3);
+                previousDir = 4;
+            }  
         }
+
         if(stunTimer < 0 )
         {
             rigidbody.velocity = inputVector.normalized * speedModifier;

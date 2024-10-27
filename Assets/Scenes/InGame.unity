@@ -646,12 +646,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8ff908b8674c24faffd1a0d2cc58f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: b7de9386ea77ce9499350ac70c187b5d, type: 3}
-  - {fileID: 21300000, guid: 2a5e067448218dd4eba76555e80149f2, type: 3}
-  - {fileID: 21300000, guid: a8cb927d5308eb945b0792ddb1e24909, type: 3}
-  - {fileID: 21300000, guid: a5a1db3c47bfcba49ae84ba06a09fbd5, type: 3}
-  speed: 4
 --- !u!1001 &70396706
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9729,7 +9723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd7920e10f744c41980bb4af6e9b49d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteSetIdle:
+  spriteSetIdleDown:
   - {fileID: 21300000, guid: b7de9386ea77ce9499350ac70c187b5d, type: 3}
   - {fileID: 21300000, guid: 2a5e067448218dd4eba76555e80149f2, type: 3}
   - {fileID: 21300000, guid: a8cb927d5308eb945b0792ddb1e24909, type: 3}
@@ -9739,6 +9733,26 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b7de9386ea77ce9499350ac70c187b5d, type: 3}
   - {fileID: 21300000, guid: c52b7953cab93334fb7e025c92c72a6f, type: 3}
   - {fileID: 21300000, guid: b7de9386ea77ce9499350ac70c187b5d, type: 3}
+  spriteSetIdleRight:
+  - {fileID: 21300000, guid: 5d69ea53f6a0a274eadbd5dd97b48476, type: 3}
+  - {fileID: 21300000, guid: f0ca47e47bfe20a4295675fb315bf4ee, type: 3}
+  - {fileID: 21300000, guid: e02166a6000a6df47adfa18da3606ee6, type: 3}
+  - {fileID: 21300000, guid: d60bb4c4209ab834bb0aff23e3747bc4, type: 3}
+  spriteSetWalkRight:
+  - {fileID: 21300000, guid: 406a69dcb69533d4dabfc0bcbe36961e, type: 3}
+  - {fileID: 21300000, guid: 5d69ea53f6a0a274eadbd5dd97b48476, type: 3}
+  - {fileID: 21300000, guid: 1094204b637002749b0fb2fb4dd538e6, type: 3}
+  - {fileID: 21300000, guid: 5d69ea53f6a0a274eadbd5dd97b48476, type: 3}
+  spriteSetIdleLeft:
+  - {fileID: 21300000, guid: 3d5e350e081b93644a88cfc9c2db7ab4, type: 3}
+  - {fileID: 21300000, guid: 1b77f3de3192b0a41b5f945190fd3a49, type: 3}
+  - {fileID: 21300000, guid: bf9f3da6b0fca1d41928c5287e6ecc68, type: 3}
+  - {fileID: 21300000, guid: da4d58c4dfe43164cb2963cc88c70965, type: 3}
+  spriteSetWalkLeft:
+  - {fileID: 21300000, guid: 967728599c3bada43a62926926398fc9, type: 3}
+  - {fileID: 21300000, guid: 3d5e350e081b93644a88cfc9c2db7ab4, type: 3}
+  - {fileID: 21300000, guid: 3e8dec2fb8ec8a445afb7bdf5fd3a8ff, type: 3}
+  - {fileID: 21300000, guid: 3d5e350e081b93644a88cfc9c2db7ab4, type: 3}
 --- !u!212 &2045767472
 SpriteRenderer:
   m_ObjectHideFlags: 0

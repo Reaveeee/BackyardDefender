@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
 {
-    public Sprite[] sprites;
-    public float speed;
+    private Sprite[] sprites;
+    private float speed;
     SpriteRenderer spriteRenderer;
 
     float timer = 0;
@@ -29,5 +30,12 @@ public class AnimationManager : MonoBehaviour
                 index = 0;
             }
         }
+    }
+
+    public void setAnimation(Sprite[] pSprites, float pSpeed)
+    {
+        sprites = pSprites;
+        speed = pSpeed;
+        timer = math.INFINITY;
     }
 }
