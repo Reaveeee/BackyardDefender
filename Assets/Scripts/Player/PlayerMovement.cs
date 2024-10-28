@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Sprite[] spriteSetIdleLeft;
     [SerializeField] Sprite[] spriteSetWalkLeft;
 
+    [SerializeField] Sprite[] spriteSetIdleUp;
+    [SerializeField] Sprite[] spriteSetWalkUp;
+
     int previousDir; //0 = Down, 1 = Right, 2 = Left, 3 = Up 4 = none
 
     void Start()
@@ -49,6 +52,14 @@ public class PlayerMovement : MonoBehaviour
                 animationManager.setAnimation(spriteSetWalkDown, 4);
                 previousDir = 0;
             }   
+        }
+        else if (Input.GetAxisRaw("Vertical") > 0)
+        {
+            if (previousDir != 3)
+            {
+                animationManager.setAnimation(spriteSetWalkUp, 4);
+                previousDir = 3;
+            }
         }
         else if(Input.GetAxisRaw("Horizontal") > 0)
         {

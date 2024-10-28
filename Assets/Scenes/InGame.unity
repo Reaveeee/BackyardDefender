@@ -7979,7 +7979,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &1812949702
 GameObject:
@@ -9753,6 +9753,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3d5e350e081b93644a88cfc9c2db7ab4, type: 3}
   - {fileID: 21300000, guid: 3e8dec2fb8ec8a445afb7bdf5fd3a8ff, type: 3}
   - {fileID: 21300000, guid: 3d5e350e081b93644a88cfc9c2db7ab4, type: 3}
+  spriteSetIdleUp:
+  - {fileID: 21300000, guid: 2eed808920ccb9a41939250a2a678914, type: 3}
+  - {fileID: 21300000, guid: 5c12b305ce5d0454ba5e411a4a92b6a6, type: 3}
+  - {fileID: 21300000, guid: 357db5f05ab3c63479e6805a5c706c01, type: 3}
+  - {fileID: 21300000, guid: f3daf24242529cf42bf404cffb9f9717, type: 3}
+  spriteSetWalkUp:
+  - {fileID: 21300000, guid: 9ce073c667e6fb44eb9208aa581c8d98, type: 3}
+  - {fileID: 21300000, guid: 2eed808920ccb9a41939250a2a678914, type: 3}
+  - {fileID: 21300000, guid: 0742dc05a0468964ba8f290c371bee9b, type: 3}
+  - {fileID: 21300000, guid: 2eed808920ccb9a41939250a2a678914, type: 3}
 --- !u!212 &2045767472
 SpriteRenderer:
   m_ObjectHideFlags: 0

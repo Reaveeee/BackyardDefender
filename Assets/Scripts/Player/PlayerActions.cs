@@ -67,6 +67,10 @@ public class PlayerActions : MonoBehaviour
 
         //Button Inputs
         mouseScroll = Input.GetAxis("Mouse ScrollWheel");
+        bool input1 = Input.GetKeyDown(KeyCode.Alpha1);
+        bool input2 = Input.GetKeyDown(KeyCode.Alpha2);
+        bool input3 = Input.GetKeyDown(KeyCode.Alpha3);
+        bool input4 = Input.GetKeyDown(KeyCode.Alpha4);
         altScrolling = Input.GetKey(KeyCode.LeftControl);
         if (Input.GetMouseButtonDown(0))
         {
@@ -88,6 +92,11 @@ public class PlayerActions : MonoBehaviour
         {
             VerticalInvScrolling();
         }
+
+        if (input1)      { invSlot = 0; OnInvSwitch.Invoke(); }
+        else if (input2) { invSlot = 1; OnInvSwitch.Invoke(); }
+        else if (input3) { invSlot = 2; OnInvSwitch.Invoke(); }
+        else if (input4) { invSlot = 3; OnInvSwitch.Invoke(); }
 
         //Leftclick
         if (Input.GetKeyDown(KeyCode.Mouse0))
