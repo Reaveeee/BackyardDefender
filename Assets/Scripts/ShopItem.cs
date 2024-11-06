@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ public class ShopItem : MonoBehaviour
     bool selected = false;
     bool used = false;
     [SerializeField] int water;
+    [SerializeField] Sprite[] waterWellSprites;
     Vector3 sizeNormal;
     Vector3 sizeSelected;
 
@@ -35,6 +37,7 @@ public class ShopItem : MonoBehaviour
         sizeSelected = spriteRenderer[0].transform.localScale + new Vector3(.1f, .1f, 0);
 
         HandleGamestateupdate();
+
     }
 
     private void Update()
@@ -58,6 +61,7 @@ public class ShopItem : MonoBehaviour
             OnBuyItem.Invoke();
             spriteRenderer[0].enabled = false;
             spriteRenderer[1].enabled = false;
+            Debug.Log("Groﬂartig");
         }
     }
 
@@ -69,6 +73,7 @@ public class ShopItem : MonoBehaviour
         {
             playerManager.water += water;
             GameObject.Find("WaterCounterText").GetComponent<TextMeshProUGUI>().text = playerManager.water.ToString();
+            GetComponentInChildren<SpriteRenderer>().sprite = waterWellSprites[0];
             used = true;
             OnCollectWater.Invoke();
         }   
@@ -93,6 +98,10 @@ public class ShopItem : MonoBehaviour
                 amount = UnityEngine.Random.Range(1, 10);
                 price = amount * 5;
                 spriteRenderer[0].sprite = itemSprites[item];
+            }
+            if(isWaterWell)
+            {
+                GetComponentInChildren<SpriteRenderer>().sprite = waterWellSprites[1];
             }
         }
     }

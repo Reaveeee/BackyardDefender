@@ -96,6 +96,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -14.5f, 14.5f), Mathf.Clamp(transform.position.y, -14.5f, 14.5f));
+    }
+
     void HandleMeleeAttack()
     {
         stunTimer = 0.2f;
