@@ -17,7 +17,7 @@ public class HealthBar : MonoBehaviour
     RectTransform shieldBar;
 
     float orangeBarTimer;
-    float orangeBarDelay = 1;
+    float orangeBarDelay = .3f;
 
     int health;
     int maxHealth;

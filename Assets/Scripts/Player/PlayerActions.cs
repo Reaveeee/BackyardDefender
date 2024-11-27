@@ -40,6 +40,7 @@ public class PlayerActions : MonoBehaviour
 
     public event Action OnInvSwitch;
     public event Action OnMeleeAttack;
+    public event Action OnCreateField;
     public event Action OnLeftClick;
 
     void Start()
@@ -188,10 +189,10 @@ public class PlayerActions : MonoBehaviour
         if (GameObject.Find("Field: " + generatedField.transform.position.x + "_" + generatedField.transform.position.y) == null && (targetPos.x > 1 || targetPos.x < -1 || targetPos.y > 1 || targetPos.y < -1) && gameManager.GetDistance(gameObject, generatedField) <= 5)
         {
             generatedField.name = "Field: " + generatedField.transform.position.x + "_" + generatedField.transform.position.y;  
+            OnCreateField.Invoke();
         }
         else
         {
-            Debug.Log("Invalid Field Position");
             Destroy(generatedField);
         }
     }

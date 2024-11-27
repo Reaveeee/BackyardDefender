@@ -12,20 +12,12 @@ public class PlayerMovement : MonoBehaviour
     GameManager gameManager;
     AnimationManager animationManager;
 
-    [SerializeField] Sprite[] spriteSetIdleDown;
-    [SerializeField] Sprite[] spriteSetWalkDown;
+    [SerializeField] Sprite[] walkUp;
+    [SerializeField] Sprite[] walkDown;
+    [SerializeField] Sprite[] idleUp;
+    [SerializeField] Sprite[] idledown;
 
-    [SerializeField] Sprite[] spriteSetIdleRight;
-    [SerializeField] Sprite[] spriteSetWalkRight;
-
-    [SerializeField] Sprite[] spriteSetIdleLeft;
-    [SerializeField] Sprite[] spriteSetWalkLeft;
-
-    [SerializeField] Sprite[] spriteSetIdleUp;
-    [SerializeField] Sprite[] spriteSetWalkUp;
-
-    int previousDir; //0 = Down, 1 = Right, 2 = Left, 3 = Up 4 = none
-
+    Vector2 previousInputVector;
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -45,48 +37,39 @@ public class PlayerMovement : MonoBehaviour
 
         stunTimer -= Time.deltaTime;
         inputVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if(Input.GetAxisRaw("Vertical") < 0)
+
+        if (previousInputVector != inputVector)
         {
-            if(previousDir != 0)
+            if(inputVector.x > 0)
             {
-                animationManager.setAnimation(spriteSetWalkDown, 4);
-                previousDir = 0;
-            }   
-        }
-        else if (Input.GetAxisRaw("Vertical") > 0)
-        {
-            if (previousDir != 3)
-            {
-                animationManager.setAnimation(spriteSetWalkUp, 4);
-                previousDir = 3;
+                if (inputVector.y > 0)
+                {
+                    animationManager.setAnimation(walkUp, 5, -1);
+                }
+                else
+                {
+                    animationManager.setAnimation(walkDown, 5, -1);
+                }
             }
-        }
-        else if(Input.GetAxisRaw("Horizontal") > 0)
-        {
-            if (previousDir != 1)
+            else if(inputVector.x < 0)
             {
-                animationManager.setAnimation(spriteSetWalkRight, 4);
-                previousDir = 1;
+                if (inputVector.y > 0)
+                {
+                    animationManager.setAnimation(walkUp, 5, 1);
+                }
+                else
+                {
+                    animationManager.setAnimation(walkDown, 5, 1);
+                }
             }
-        }
-        else if(Input.GetAxisRaw("Horizontal") < 0)
-        {
-            if (previousDir != 2)
+
+            if(inputVector.y == 0 && inputVector.x == 0)
             {
-                animationManager.setAnimation(spriteSetWalkLeft, 4);
-                previousDir = 2;
+                animationManager.setAnimation(idledown, 3);
             }
-        }
-        else
-        {
-            if(previousDir != 4)
-            {
-                animationManager.setAnimation(spriteSetIdleDown, 3);
-                previousDir = 4;
-            }  
         }
 
-        if(stunTimer < 0 )
+        if (stunTimer < 0 )
         {
             rigidbody.velocity = inputVector.normalized * speedModifier;
         }
@@ -94,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rigidbody.velocity = Vector2.zero;
         }
+        previousInputVector = inputVector;
     }
 
     private void FixedUpdate()

@@ -32,10 +32,27 @@ public class AnimationManager : MonoBehaviour
         }
     }
 
+    public void setAnimation(Sprite[] pSprites, float pSpeed, float scaleX)
+    {
+        transform.localScale = new Vector3(scaleX, transform.localScale.y, transform.localScale.z);
+        sprites = pSprites;
+        speed = pSpeed;
+        timer = math.INFINITY;
+    }
     public void setAnimation(Sprite[] pSprites, float pSpeed)
     {
         sprites = pSprites;
         speed = pSpeed;
         timer = math.INFINITY;
+    }
+
+    public void setAnimation(float scaleX)
+    {
+        transform.localScale = new Vector3(scaleX, transform.localScale.y, transform.localScale.z);
+    }
+
+    public Sprite[] getAnimation()
+    {
+        return sprites;
     }
 }

@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour
     public int shield = 0;
     public int maxShield = 3;
     public int lastHealth;
+    PlayerActions playerActions;
 
     public event Action OnDeath;
     public event Action OnDamage;
@@ -20,6 +21,8 @@ public class PlayerManager : MonoBehaviour
     {
         seeds[0] = 5;
         seeds[1] = 10;
+        playerActions = GetComponent<PlayerActions>();
+        playerActions.OnCreateField += preventError;
     }
 
     void Update()
@@ -38,5 +41,9 @@ public class PlayerManager : MonoBehaviour
         {
             OnDeath.Invoke();
         }
+    }
+    private void preventError()
+    {
+        return;
     }
 }

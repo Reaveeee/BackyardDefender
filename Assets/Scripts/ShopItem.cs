@@ -61,7 +61,6 @@ public class ShopItem : MonoBehaviour
             OnBuyItem.Invoke();
             spriteRenderer[0].enabled = false;
             spriteRenderer[1].enabled = false;
-            Debug.Log("Groﬂartig");
         }
     }
 

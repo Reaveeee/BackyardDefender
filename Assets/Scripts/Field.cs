@@ -20,6 +20,7 @@ public class Field : MonoBehaviour
     bool planted = false;
     GameObject plant;
     PlantManager plantManager;
+    [SerializeField] Sprite[] sprites;
 
     Color baseColor;
 
@@ -33,6 +34,8 @@ public class Field : MonoBehaviour
         baseColor = spriteRenderer.color;
 
         gameManager.OnGameStateUpdate += handleGamestateUpdate;
+        playerActions.OnCreateField += handleCreateField;
+        handleCreateField();
     }
 
     void Update()
@@ -94,5 +97,30 @@ public class Field : MonoBehaviour
             }
             Mathf.Clamp(humidity, 0, 1);
         }
+    }
+
+    private void handleCreateField()
+    {
+        GameObject up = GameObject.Find("Field: " + transform.position.x + "_" + (transform.position.y + 1));
+        GameObject down = GameObject.Find("Field: " + transform.position.x + "_" + (transform.position.y - 1));
+        GameObject left = GameObject.Find("Field: " + (transform.position.x - 1) + "_" + transform.position.y);
+        GameObject right = GameObject.Find("Field: " + (transform.position.x + 1) + "_" + transform.position.y);
+        SpriteRenderer spriteRender = GetComponent<SpriteRenderer>();
+        if (up != null && right != null && left != null && down != null) { spriteRender.sprite = sprites[1]; return; }
+        if (up == null && right == null && left == null && down == null) { spriteRender.sprite = sprites[0]; return; }
+        if (up != null && right == null && left == null && down == null) { spriteRender.sprite = sprites[2]; return; }
+        if (up != null && right != null && left == null && down == null) { spriteRender.sprite = sprites[3]; return; }
+        if (up != null && right == null && left != null && down == null) { spriteRender.sprite = sprites[4]; return; }
+        if (up != null && right == null && left == null && down != null) { spriteRender.sprite = sprites[5]; return; }
+        if (up != null && right != null && left != null && down == null) { spriteRender.sprite = sprites[6]; return; }
+        if (up != null && right != null && left == null && down != null) { spriteRender.sprite = sprites[7]; return; }
+        if (up != null && right == null && left != null && down != null) { spriteRender.sprite = sprites[8]; return; }
+        if (up == null && right != null && left == null && down == null) { spriteRender.sprite = sprites[9]; return; }
+        if (up == null && right != null && left != null && down == null) { spriteRender.sprite = sprites[10]; return; }
+        if (up == null && right != null && left == null && down != null) { spriteRender.sprite = sprites[11]; return; }
+        if (up == null && right != null && left != null && down != null) { spriteRender.sprite = sprites[12]; return; }
+        if (up == null && right == null && left != null && down == null) { spriteRender.sprite = sprites[13]; return; }
+        if (up == null && right == null && left != null && down != null) { spriteRender.sprite = sprites[14]; return; }
+        if (up == null && right == null && left == null && down != null) { spriteRender.sprite = sprites[15]; return; }
     }
 }
