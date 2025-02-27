@@ -31,7 +31,7 @@ public class HealthBar : MonoBehaviour
         healthBar = GetComponentInChildren<HealthBar2>().GetComponent<RectTransform>();
         orangeBar = GetComponentInChildren<HealthBar3>().GetComponent<RectTransform>();
         shieldBar = GetComponentInChildren<HealthBar4>().GetComponent<RectTransform>();
-        offset = new Vector3(0, 130, 0);
+        offset = new Vector3(0, 2, 0);
         if(enemyManager != null)
         {
             enemyManager.OnDamageReceived += HandleDamageReceived;
@@ -49,7 +49,7 @@ public class HealthBar : MonoBehaviour
         {
             if(enemyManager != null)
             {
-                transform.position = cam.WorldToScreenPoint(enemyManager.gameObject.transform.position) + offset;
+                transform.position = cam.WorldToScreenPoint(enemyManager.gameObject.transform.position + offset);
                 health = enemyManager.health;
                 maxHealth = enemyManager.maxHealth;
                 shield = enemyManager.shield;
@@ -57,7 +57,7 @@ public class HealthBar : MonoBehaviour
             }
             else
             {
-                transform.position = cam.WorldToScreenPoint(playerManager.gameObject.transform.position) + offset;
+                transform.position = cam.WorldToScreenPoint(playerManager.gameObject.transform.position + offset);
                 health = playerManager.health;
                 maxHealth = playerManager.maxHealth;
                 shield = playerManager.shield;

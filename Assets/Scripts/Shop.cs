@@ -58,7 +58,7 @@ public class Shop : MonoBehaviour
             else if (gameManager.gameState == 1)
             {
                 LeanTween.moveY(gameObject, hiddenPos, 3);
-                Invoke("CloseShop", 0);
+                CloseShop();
             }
         }
         if(gameManager.gameState == 1)

@@ -39,6 +39,8 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] int attackDamage;
     float attackDelayTimer;
 
+    public Sprite[] sprites;
+
     public event Action OnDamageReceived;
     public event Action<GameObject> OnDeath;
 
