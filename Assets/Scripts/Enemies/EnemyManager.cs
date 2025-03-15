@@ -202,7 +202,7 @@ public class EnemyManager : MonoBehaviour
                 else
                 {
                     PlantManager plantManager = collision.gameObject.GetComponent<PlantManager>();
-                    plantManager.health -= attackDamage;
+                    plantManager.takeDamage(attackDamage);
                     attackDelayTimer = attackDelay;
                 }
             }

@@ -8,6 +8,9 @@ public class PlantManager : MonoBehaviour
     GameManager gameManager;
     Field field;
     [SerializeField] bool isOmegaTree;
+    [SerializeField] Sprite[] sprites;
+
+    SpriteRenderer spriteRenderer;
 
     public int growTime;
     public bool harvestable;
@@ -27,6 +30,7 @@ public class PlantManager : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.OnGameStateUpdate += HandleGameStateUpdate;
+        spriteRenderer = GetComponent<SpriteRenderer>();
         health = maxHealth;
 
         if (!isOmegaTree)
@@ -59,6 +63,20 @@ public class PlantManager : MonoBehaviour
     {
         gameManager.money += worth;
         Destroy(gameObject);
+    }
+
+    public void takeDamage(int damage)
+    {
+        health -= damage;
+        updateSprite();
+    }
+
+    void updateSprite()
+    {
+                          spriteRenderer.sprite = sprites[0];
+        if (health <= 75) spriteRenderer.sprite = sprites[1];
+        if (health <= 50) spriteRenderer.sprite = sprites[2];
+        if (health <= 25) spriteRenderer.sprite = sprites[3];
     }
 
     private void Update()
