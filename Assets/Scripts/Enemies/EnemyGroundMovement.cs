@@ -29,7 +29,7 @@ public class EnemyGroundMovement : MonoBehaviour
         }
         if (enemyManager.stun < 0)
         {
-            rigidbody.velocity = new Vector2(enemyManager.target.transform.position.x - transform.position.x, enemyManager.target.transform.position.y - transform.position.y).normalized * enemyManager.speed;
+            rigidbody.linearVelocity = new Vector2(enemyManager.target.transform.position.x - transform.position.x, enemyManager.target.transform.position.y - transform.position.y).normalized * enemyManager.speed;
             firstStunFrame = true;
         }
         else if(firstStunFrame)
@@ -42,7 +42,7 @@ public class EnemyGroundMovement : MonoBehaviour
     {
         if(enemyManager.stun > 0)
         {
-            rigidbody.velocity /= knockbackResistance;
+            rigidbody.linearVelocity /= knockbackResistance;
         }
     }
 }

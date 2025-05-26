@@ -38,14 +38,14 @@ public class EnemyRabbitMovement : MonoBehaviour
         {
             if (jumping)
             {
-                rigidbody.velocity = new Vector2(enemyManager.target.transform.position.x - transform.position.x, enemyManager.target.transform.position.y - transform.position.y).normalized * enemyManager.speed;
+                rigidbody.linearVelocity = new Vector2(enemyManager.target.transform.position.x - transform.position.x, enemyManager.target.transform.position.y - transform.position.y).normalized * enemyManager.speed;
             }
-            else rigidbody.velocity = Vector2.zero; 
-            if(rigidbody.velocity.x > 0)
+            else rigidbody.linearVelocity = Vector2.zero; 
+            if(rigidbody.linearVelocity.x > 0)
             {
                 sr.gameObject.transform.localScale = Vector3.one;
             }
-            else if(rigidbody.velocity.x < 0)
+            else if(rigidbody.linearVelocity.x < 0)
             {
                 sr.gameObject.transform.localScale = Vector3.one - Vector3.right * 2;
             }
@@ -61,7 +61,7 @@ public class EnemyRabbitMovement : MonoBehaviour
     {
         if(enemyManager.stun > 0)
         {
-            rigidbody.velocity /= knockbackResistance;
+            rigidbody.linearVelocity /= knockbackResistance;
         }
     }
 

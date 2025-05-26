@@ -11,6 +11,10 @@ public class PlayerMovement : MonoBehaviour
     float stunTimer;
     GameManager gameManager;
     AnimationManager animationManager;
+    SpriteRenderer inHandSpriteRenderer;
+    SpriteRenderer playerSprite;
+    int inHandOrderOffset;
+    bool lastY;
 
     [SerializeField] Sprite[] walkUp;
     [SerializeField] Sprite[] walkDown;
@@ -25,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
         playerActions.OnMeleeAttack += HandleMeleeAttack;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         animationManager = GetComponentInChildren<AnimationManager>();
+        inHandSpriteRenderer = GameObject.Find("InHandSprite").GetComponent<SpriteRenderer>();
+        playerSprite = GameObject.Find("PlayerSprite").GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -42,11 +48,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (stunTimer < 0 )
         {
-            rigidbody.velocity = inputVector.normalized * speedModifier;
+            rigidbody.linearVelocity = inputVector.normalized * speedModifier;
         }
         else
         {
-            rigidbody.velocity = Vector2.zero;
+            rigidbody.linearVelocity = Vector2.zero;
         }
         previousInputVector = inputVector;
     }
@@ -58,16 +64,19 @@ public class PlayerMovement : MonoBehaviour
 
     void animate()
     {
+
         if (previousInputVector != inputVector)
         {
             if (inputVector.x > 0)
             {
                 if (inputVector.y > 0)
                 {
+                    lastY = true;
                     animationManager.setAnimation(walkUp, 5, -1);
                 }
                 else
                 {
+                    lastY = false;
                     animationManager.setAnimation(walkDown, 5, -1);
                 }
             }
@@ -75,10 +84,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (inputVector.y > 0)
                 {
+                    lastY = true;
                     animationManager.setAnimation(walkUp, 5, 1);
                 }
                 else
                 {
+                    lastY = false;
                     animationManager.setAnimation(walkDown, 5, 1);
                 }
             }
@@ -86,19 +97,61 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (inputVector.y > 0)
                 {
+                    lastY = true;
                     animationManager.setAnimation(walkUp, 5);
                 }
                 else if(inputVector.y < 0)
                 {
+                    lastY = false;
                     animationManager.setAnimation(walkDown, 5);
                 }
             }
 
             if (inputVector.y == 0 && inputVector.x == 0)
             {
-                animationManager.setAnimation(idledown, 3);
+                if (lastY) animationManager.setAnimation(idleUp, 3);
+                else animationManager.setAnimation(idledown, 3);
             }
         }
+
+        if (lastY)
+        {
+            switch (playerActions.invSlot)
+            {
+                case 0:
+                    inHandOrderOffset = 1;
+                    break;
+                case 1:
+                    inHandOrderOffset = -1;
+                    break;
+                case 2:
+                    inHandOrderOffset = -1;
+                    break;
+                case 3:
+                    inHandOrderOffset = 1;
+                    break;
+            }
+        }
+        else
+        {
+            switch (playerActions.invSlot)
+            {
+                case 0:
+                    inHandOrderOffset = -1;
+                    break;
+                case 1:
+                    inHandOrderOffset = 1;
+                    break;
+                case 2:
+                    inHandOrderOffset = 1;
+                    break;
+                case 3:
+                    inHandOrderOffset = -1;
+                    break;
+            }
+        }
+
+            inHandSpriteRenderer.sortingOrder = playerSprite.sortingOrder + inHandOrderOffset;
     }
 
     void HandleMeleeAttack()

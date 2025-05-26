@@ -7,7 +7,7 @@ using static UnityEngine.Rendering.DebugUI.Table;
 
 public class PlayerActions : MonoBehaviour
 {
-    public int invSlot = 0; // 0 = Schwert, 1 = Gießkanne, 2 = Samen, 3 = Harke
+    public int invSlot = 0; // 0 = Schwert, 1 = Gieï¿½kanne, 2 = Samen, 3 = Harke
     int lastInvSlot = 3;
     public int seedSlot = 0; // 0 = Standart, 1 = Geld
     public GameObject[] seeds;
@@ -175,7 +175,7 @@ public class PlayerActions : MonoBehaviour
     {
         if(attackDelayTimer <= 0)
         {
-            swordObject = Instantiate(swordHitbox, playerSprite.transform.position + new Vector3(mousePos.x - playerSprite.transform.position.x, mousePos.y - playerSprite.transform.position.y, 0).normalized * attackOffset + new Vector3(rigidbody.velocity.x * attackVelocityMultiplier, rigidbody.velocity.y * attackVelocityMultiplier, 100), Quaternion.Euler(0, 0, pRotZ - 90));
+            swordObject = Instantiate(swordHitbox, playerSprite.transform.position + new Vector3(mousePos.x - playerSprite.transform.position.x, mousePos.y - playerSprite.transform.position.y, 0).normalized * attackOffset + new Vector3(rigidbody.linearVelocity.x * attackVelocityMultiplier, rigidbody.linearVelocity.y * attackVelocityMultiplier, 100), Quaternion.Euler(0, 0, pRotZ - 90));
             swordTimer = swordLifetime;
             attackDelayTimer = attackDelay;
             OnMeleeAttack.Invoke();

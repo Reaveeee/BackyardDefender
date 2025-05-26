@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    [SerializeField] Sprite[] inHandSprites;
+
     public int[] seeds = new int[2];
     public int water = 0;
     public int health = 10;
@@ -13,6 +15,7 @@ public class PlayerManager : MonoBehaviour
     public int maxShield = 3;
     public int lastHealth;
     PlayerActions playerActions;
+    SpriteRenderer inHandSpriteRenderer;
 
     public event Action OnDeath;
     public event Action OnDamage;
@@ -23,6 +26,8 @@ public class PlayerManager : MonoBehaviour
         seeds[1] = 10;
         playerActions = GetComponent<PlayerActions>();
         playerActions.OnCreateField += preventError;
+        inHandSpriteRenderer = GameObject.Find("InHandSprite").GetComponent<SpriteRenderer>();
+        playerActions.OnInvSwitch += HandleInvSwitch;
     }
 
     void Update()
@@ -42,6 +47,12 @@ public class PlayerManager : MonoBehaviour
             OnDeath.Invoke();
         }
     }
+
+    void HandleInvSwitch()
+    {
+        inHandSpriteRenderer.sprite = inHandSprites[playerActions.invSlot];
+    }
+
     private void preventError()
     {
         return;

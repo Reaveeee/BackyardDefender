@@ -76,7 +76,7 @@ public class EnemyManager : MonoBehaviour
     {
         hitTimer = 0;
         stun = 3 / stunResistance;
-        rigidbody.velocity = plantProjectile.GetComponent<Rigidbody2D>().velocity.normalized * 3;
+        rigidbody.linearVelocity = plantProjectile.GetComponent<Rigidbody2D>().linearVelocity.normalized * 3;
         if (plantProjectile.pierce <= 0 )
         {
             Destroy(plantProjectile.gameObject);
@@ -114,7 +114,7 @@ public class EnemyManager : MonoBehaviour
     {
         hitTimer = 0;
         stun = 3 / stunResistance;
-        rigidbody.velocity = (transform.position - player.transform.position).normalized * 3;
+        rigidbody.linearVelocity = (transform.position - player.transform.position).normalized * 3;
 
         if (shield > 0)
         {
